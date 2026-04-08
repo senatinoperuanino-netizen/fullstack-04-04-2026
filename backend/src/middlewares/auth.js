@@ -1,4 +1,5 @@
 const jwt= require('jsonwebtoken');
+require('dotenv').config();
 
 //Middleware que protege rutas
 const verificarToken=(req,res,next)=>{
@@ -12,7 +13,7 @@ const verificarToken=(req,res,next)=>{
 
     try{
         //Verificar token
-        const decoded=jwt.verify(token,"secreto");
+        const decoded=jwt.verify(token, process.env.JWT_SECRET);
         //guardamos info del usuario
         req.user=decoded;
         next();

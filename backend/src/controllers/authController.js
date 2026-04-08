@@ -5,12 +5,12 @@ const generarToken = require('../utils/jwt');
 //Registro
 exports.register = async (req,res)=>{
     try{
-        const{name,email,password}=req.body;
+        const{username,email,password}=req.body;
         //encriptamos contraseña
         const hash = await bcrypt.hash(password,10);
         //crear usuario
         const user = await User.create({
-            name,
+            username,
             email,
             password:hash,
         });
