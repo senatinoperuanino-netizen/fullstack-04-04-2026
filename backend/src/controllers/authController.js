@@ -14,7 +14,7 @@ exports.register = async (req,res)=>{
             email,
             password:hashPassword,
         });
-        res.json(user);
+        res.json({message:'Usuario creado correctamente'});
     }catch(error){
         res.status(500).json({error:error.message});
     }
