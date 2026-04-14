@@ -1,18 +1,18 @@
 const bcrypt = require('bcrypt');
-const {User}= require('../models');
-const generarToken = require('../utils/jwt');
+const User= require('../models/Users');
 
-//Registro
+
+//Registro de usuarios
 exports.register = async (req,res)=>{
     try{
         const{username,email,password}=req.body;
         //encriptamos contraseña
-        const hash = await bcrypt.hash(password,10);
+        const hashPassword = await bcrypt.hash(password,10);
         //crear usuario
         const user = await User.create({
             username,
             email,
-            password:hash,
+            password:hashPassword,
         });
         res.json(user);
     }catch(error){
